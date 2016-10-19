@@ -13,18 +13,33 @@
 				width: 50%;
 				margin: 0 auto;
 			}
-			#msg-page,#ab-page,#star-page{
+			
+			#msg-page,
+			#ab-page,
+			#star-page {
 				-webkit-animation: none !important;
 				animation: none !important;
 			}
-			#info-panel{
+			
+			#info-panel {
 				background-color: white;
 			}
-			#self-head{
+			
+			#self-info {
+				height: 3rem;
+			}
+			
+			#self-head {
 				width: 3rem;
 				height: 3rem;
-				margin :0 auto;
+				margin: 0 auto;
 				border-radius: 50%;
+				float: left;
+				margin-right: 1rem;
+			}
+			
+			#self-name {
+				float: left;
 			}
 		</style>
 
@@ -136,15 +151,82 @@
 			<!--侧边栏-->
 			<div class="panel panel-left panel-reveal" id="info-panel">
 				<div class="content-block">
+
 					<div id="self-info">
 						<img id="self-head" src="img/head.jpg" alt="">
+						<span id="self-name">我的昵称</span>
+						<br />
+						<div id="self-level"></div>
+						<div style="clear: both;"></div>
+						<p>今天捡了100块钱</p>
 					</div>
+
+					<div class="list-block">
+						<ul>
+							<li class="item-content">
+								<div class="item-media">
+									<i class="icon icon-gift"></i>
+								</div>
+								<div class="item-inner">
+									<div class="item-title">了解会员特权</div>
+								</div>
+							</li>
+							<li class="item-content">
+								<div class="item-media">
+									<i class="icon icon-cart"></i>
+								</div>
+								<div class="item-inner">
+									<div class="item-title">QQ钱包</div>
+								</div>
+							</li>
+							<li class="item-content">
+								<div class="item-media">
+									<i class="icon icon-edit"></i>
+								</div>
+								<div class="item-inner">
+									<div class="item-title">个性装扮</div>
+								</div>
+							</li>
+							<li class="item-content">
+								<div class="item-media">
+									<i class="icon icon-edit"></i>
+								</div>
+								<div class="item-inner">
+									<div class="item-title">我的收藏</div>
+								</div>
+							</li>
+							<li class="item-content">
+								<div class="item-media">
+									<i class="icon icon-edit"></i>
+								</div>
+								<div class="item-inner">
+									<div class="item-title">我的相册</div>
+								</div>
+							</li>
+							<li class="item-content">
+								<div class="item-media">
+									<i class="icon icon-edit"></i>
+								</div>
+								<div class="item-inner">
+									<div class="item-title">我的文件</div>
+								</div>
+							</li>
+							<li class="item-content">
+								<div class="item-media">
+									<i class="icon icon-edit"></i>
+								</div>
+								<div class="item-inner">
+									<div class="item-title">我的名片</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+
 				</div>
 			</div>
-		</div>
 
-		<script src="sui/zepto.min.js"></script>
-		<script src="sui/sm.min.js"></script>
+			<script src="sui/zepto.min.js"></script>
+			<script src="sui/sm.min.js"></script>
 	</body>
 
 </html>
@@ -165,6 +247,46 @@
 		document.title = "动态"
 	});
 
-	//初始化SUI,该行代码放到script最后一行
+	var myLevel = 50;
+
+	function refreshLevel(level) {
+		var levArray = []
+
+		while(level / 4 > 4) {
+			var remainder = level % 4
+			levArray.unshift(remainder)
+			level = Math.floor(level / 4)
+		}
+		levArray.unshift(level)
+
+		for(var i = 0; i < levArray.length; i++) {
+			var picName;
+			switch(levArray.length - i) {
+				case 4:
+					picName = "king.png"
+					break
+				case 3:
+					picName = "sun.png"
+					break;
+				case 2:
+					picName = "moon.png"
+					break;
+				case 1:
+					picName = "star.png"
+				default:
+					break
+			}
+
+			for(var j = 0; j < levArray[i]; j++) {
+				$("<img />")
+					.attr("src", "img/" + picName)
+					.css("width", "0.8rem")
+					.css("height", "0.8rem")
+					.appendTo($("#self-level"))
+			}
+		}
+	}
+	refreshLevel(10)
+		//初始化SUI,该行代码放到script最后一行
 	$.init();
 </script>
