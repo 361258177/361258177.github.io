@@ -1,233 +1,319 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>微信</title>
-		<meta name="viewport" content="initial-scale=1, maximum-scale=1">
-		<link rel="stylesheet" href="sui/sm.min.css" />
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>微信</title>
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="sui/sm.min.css" />
 
-		<style>
-			#btn-title {
-				width: 50%;
-				margin: 0 auto;
-			}
-			
-			#msg-page,
-			#ab-page,
-			#star-page {
-				-webkit-animation: none !important;
-				animation: none !important;
-			}
-			
-			#info-panel {
-				background-color: white;
-			}
-			
-			#self-info {
-				height: 3rem;
-			}
-			
-			#self-head {
-				width: 3rem;
-				height: 3rem;
-				margin: 0 auto;
-				border-radius: 50%;
-				float: left;
-				margin-right: 1rem;
-			}
-			
-			#self-name {
-				float: left;
-			}
-		</style>
+	<style>
+		#btn-title {
+			width: 50%;
+			margin: 0 auto;
+		}
+		
+		#msg-page,
+		#ab-page,
+		#star-page {
+			-webkit-animation: none !important;
+			animation: none !important;
+		}
+		
+		#self-info {
+			height: 3rem;
+		}
+		
+		#self-head {
+			width: 3rem;
+			height: 3rem;
+			margin: 0 auto;
+			border-radius: 50%;
+			float: left;
+			margin-right: 1rem;
+		}
+		
+		#self-name {
+			float: left;
+		}
+		
+		#bottom-menu {
+			font-size: 0.6rem;
+		}
+		
+		#aside-menu {
+			height: 65vh;
+			overflow-y: scroll;
+		}
+		
+		#friend-list {
+			margin: 0;
+		}
+	</style>
 
-	</head>
+</head>
 
-	<body>
+<body>
 
-		<div class="page-group">
-			<!--消息页面-->
-			<div class="page page-current" id="msg-page">
-				<!--导航条-->
-				<header class="bar bar-nav">
-					<a class="icon icon-me pull-left open-panel" data-panel="#info-panel"></a>
-					<button class="button pull-right"><b>＋</b></button>
-					<div class="buttons-row" id="btn-title">
-						<a href="" class="tab-link active button">消息</a>
-						<a href="" class="tab-link button">电话</a>
-					</div>
-				</header>
+	<div class="page-group">
+		<!--消息页面-->
+		<div class="page page-current" id="msg-page">
+			<!--导航条-->
+			<header class="bar bar-nav">
+				<a class="icon icon-me pull-left open-panel" data-panel="#info-panel"></a>
+				<button class="button pull-right"><b>＋</b></button>
+				<div class="buttons-row" id="btn-title">
+					<a href="" class="tab-link active button">消息</a>
+					<a href="" class="tab-link button">电话</a>
+				</div>
+			</header>
 
-				<!--工具栏-->
-				<nav class="bar bar-tab">
-					<a class="tab-item active">
-						<span class="icon icon-message"></span>
-						<span class="tab-label">消息</span>
-						<span class="badge">99+</span>
-					</a>
-					<a href="#ab-page" class="tab-item">
-						<span class="icon icon-friends"></span>
-						<span class="tab-label">联系人</span>
-					</a>
-					<a href="#star-page" class="tab-item">
-						<span class="icon icon-star"></span>
-						<span class="tab-label">动态</span>
-					</a>
-				</nav>
-				<!--内容区-->
-				<div class="content close-panel">
-					<div class="content-block">
-						这里是好友列表
+			<!--工具栏-->
+			<nav class="bar bar-tab">
+				<a class="tab-item active">
+					<span class="icon icon-message"></span>
+					<span class="tab-label">消息</span>
+					<span class="badge">99+</span>
+				</a>
+				<a href="#ab-page" class="tab-item">
+					<span class="icon icon-friends"></span>
+					<span class="tab-label">联系人</span>
+				</a>
+				<a href="#star-page" cdlass="tab-item">
+					<span class="icon icon-star"></span>
+					<span class="tab-label">动态</span>
+				</a>
+			</nav>
+			<!--搜索栏-->
+			<div class="bar bar-header-secondary">
+				<div class="searchbar">
+					<a href="" class="searchbar-input"></a>
+					<div class="search-input">
+						<label for="" class="icon icon-search"></label>
+						<input type="search" id="search" placeholder="搜索">
 					</div>
 				</div>
 			</div>
-
-			<!--联系人页面-->
-			<div class="page" id="ab-page">
-				<!--导航条-->
-				<header class="bar bar-nav">
-					<a class="icon icon-me pull-left"></a>
-					<button class="button button-nav button-link pull-right">添加</button>
-					<h1 class="title">联系人</h1>
-				</header>
-				<!--工具栏-->
-				<nav class="bar bar-tab">
-					<a href="#msg-page" class="tab-item">
-						<span class="icon icon-message"></span>
-						<span class="tab-label">消息</span>
-					</a>
-					<a class="tab-item active">
-						<span class="icon icon-friends"></span>
-						<span class="tab-label">联系人</span>
-					</a>
-					<a href="#star-page" class="tab-item">
-						<span class="icon icon-star"></span>
-						<span class="tab-label">动态</span>
-					</a>
-				</nav>
-
-				<!--内容区-->
-				<div class="content">
-					<div class="content-block">
-						这里联系人页面
-					</div>
+			<!--内容区-->
+			<div class="content close-panel">
+				<div id="friend-list" class="list-block media-list">
+					<ul>
+						<li>
+							<div class="item-content">
+								<div class="item-media"><img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg"
+										style='width: 2.2rem;'></div>
+								<div class="item-inner">
+									<div class="item-title-row">
+										<div class="item-title">标题</div>
+									</div>
+									<div class="item-subtitle">子标题</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+					<ul>
+						<li>
+							<div class="item-content">
+								<div class="item-media"><img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg"
+										style='width: 2.2rem;'></div>
+								<div class="item-inner">
+									<div class="item-title-row">
+										<div class="item-title">标题</div>
+									</div>
+									<div class="item-subtitle">子标题</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+					<ul>
+						<li>
+							<div class="item-content">
+								<div class="item-media"><img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg"
+										style='width: 2.2rem;'></div>
+								<div class="item-inner">
+									<div class="item-title-row">
+										<div class="item-title">标题</div>
+									</div>
+									<div class="item-subtitle">子标题</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+					<ul>
+						<li>
+							<div class="item-content">
+								<div class="item-media"><img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg"
+										style='width: 2.2rem;'></div>
+								<div class="item-inner">
+									<div class="item-title-row">
+										<div class="item-title">标题</div>
+									</div>
+									<div class="item-subtitle">子标题</div>
+								</div>
+							</div>
+						</li>
+					</ul>
 				</div>
 			</div>
+		</div>
 
-			<!--动态页面-->
-			<div class="page" id="star-page">
-				<!--导航条-->
-				<header class="bar bar-nav">
-					<a class="icon icon-me pull-left"></a>
-					<button class="button button-nav button-link pull-right">更多</button>
-					<h1 class="title">动态</h1>
-				</header>
-				<!--工具栏-->
-				<nav class="bar bar-tab">
-					<a href="#msg-page" class="tab-item">
-						<span class="icon icon-message"></span>
-						<span class="tab-label">消息</span>
-					</a>
-					<a href="#ab-page" class="tab-item">
-						<span class="icon icon-friends"></span>
-						<span class="tab-label">联系人</span>
-					</a>
-					<a class="tab-item active">
-						<span class="icon icon-star"></span>
-						<span class="tab-label">动态</span>
-					</a>
-				</nav>
+		<!--联系人页面-->
+		<div class="page" id="ab-page">
+			<!--导航条-->
+			<header class="bar bar-nav">
+				<a class="icon icon-me pull-left"></a>
+				<button class="button button-nav button-link pull-right">添加</button>
+				<h1 class="title">联系人</h1>
+			</header>
+			<!--工具栏-->
+			<nav class="bar bar-tab">
+				<a href="#msg-page" class="tab-item">
+					<span class="icon icon-message"></span>
+					<span class="tab-label">消息</span>
+				</a>
+				<a class="tab-item active">
+					<span class="icon icon-friends"></span>
+					<span class="tab-label">联系人</span>
+				</a>
+				<a href="#star-page" class="tab-item">
+					<span class="icon icon-star"></span>
+					<span class="tab-label">动态</span>
+				</a>
+			</nav>
 
-				<!--内容区-->
-				<div class="content">
-					<div class="content-block">
-						这是动态页面
-					</div>
-				</div>
-			</div>
-
-			<!--侧边栏-->
-			<div class="panel panel-left panel-reveal" id="info-panel">
+			<!--内容区-->
+			<div class="content">
 				<div class="content-block">
+					这里联系人页面
+				</div>
+			</div>
+		</div>
 
-					<div id="self-info">
-						<img id="self-head" src="img/head.jpg" alt="">
-						<span id="self-name">我的昵称</span>
-						<br />
-						<div id="self-level"></div>
-						<div style="clear: both;"></div>
-						<p>今天捡了100块钱</p>
+		<!--动态页面-->
+		<div class="page" id="star-page">
+			<!--导航条-->
+			<header class="bar bar-nav">
+				<a class="icon icon-me pull-left"></a>
+				<button class="button button-nav button-link pull-right">更多</button>
+				<h1 class="title">动态</h1>
+			</header>
+			<!--工具栏-->
+			<nav class="bar bar-tab">
+				<a href="#msg-page" class="tab-item">
+					<span class="icon icon-message"></span>
+					<span class="tab-label">消息</span>
+				</a>
+				<a href="#ab-page" class="tab-item">
+					<span class="icon icon-friends"></span>
+					<span class="tab-label">联系人</span>
+				</a>
+				<a class="tab-item active">
+					<span class="icon icon-star"></span>
+					<span class="tab-label">动态</span>
+				</a>
+			</nav>
+
+			<!--内容区-->
+			<div class="content">
+				<div class="content-block">
+					这是动态页面
+				</div>
+			</div>
+		</div>
+
+		<!--侧边栏-->
+		<div class="theme-white panel panel-left panel-reveal" id="info-panel">
+			<div class="content-block">
+
+				<div id="self-info">
+					<img id="self-head" src="img/head.jpg" alt="">
+					<span id="self-name">我的昵称</span>
+					<br />
+					<div id="self-level"></div>
+					<div style="clear: both;"></div>
+					<p>今天捡了100块钱</p>
+				</div>
+				<!--菜单列表-->
+				<div id="aside-menu" class="list-block">
+					<ul>
+						<li class="item-content">
+							<div class="item-media">
+								<i class="icon icon-gift"></i>
+							</div>
+							<div class="item-inner">
+								<div class="item-title">了解会员特权</div>
+							</div>
+						</li>
+						<li class="item-content">
+							<div class="item-media">
+								<i class="icon icon-cart"></i>
+							</div>
+							<div class="item-inner">
+								<div class="item-title">QQ钱包</div>
+							</div>
+						</li>
+						<li class="item-content">
+							<div class="item-media">
+								<i class="icon icon-edit"></i>
+							</div>
+							<div class="item-inner">
+								<div class="item-title">个性装扮</div>
+							</div>
+						</li>
+						<li class="item-content">
+							<div class="item-media">
+								<i class="icon icon-edit"></i>
+							</div>
+							<div class="item-inner">
+								<div class="item-title">我的收藏</div>
+							</div>
+						</li>
+						<li class="item-content">
+							<div class="item-media">
+								<i class="icon icon-edit"></i>
+							</div>
+							<div class="item-inner">
+								<div class="item-title">我的相册</div>
+							</div>
+						</li>
+						<li class="item-content">
+							<div class="item-media">
+								<i class="icon icon-edit"></i>
+							</div>
+							<div class="item-inner">
+								<div class="item-title">我的文件</div>
+							</div>
+						</li>
+						<li class="item-content">
+							<div class="item-media">
+								<i class="icon icon-edit"></i>
+							</div>
+							<div class="item-inner">
+								<div class="item-title">我的名片</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+
+				<div class="row" id="bottom-menu">
+					<div class="col-33">
+						<a href="" class="button-link"><i class="icon icon-settings"></i>设置</a>
 					</div>
-
-					<div class="list-block">
-						<ul>
-							<li class="item-content">
-								<div class="item-media">
-									<i class="icon icon-gift"></i>
-								</div>
-								<div class="item-inner">
-									<div class="item-title">了解会员特权</div>
-								</div>
-							</li>
-							<li class="item-content">
-								<div class="item-media">
-									<i class="icon icon-cart"></i>
-								</div>
-								<div class="item-inner">
-									<div class="item-title">QQ钱包</div>
-								</div>
-							</li>
-							<li class="item-content">
-								<div class="item-media">
-									<i class="icon icon-edit"></i>
-								</div>
-								<div class="item-inner">
-									<div class="item-title">个性装扮</div>
-								</div>
-							</li>
-							<li class="item-content">
-								<div class="item-media">
-									<i class="icon icon-edit"></i>
-								</div>
-								<div class="item-inner">
-									<div class="item-title">我的收藏</div>
-								</div>
-							</li>
-							<li class="item-content">
-								<div class="item-media">
-									<i class="icon icon-edit"></i>
-								</div>
-								<div class="item-inner">
-									<div class="item-title">我的相册</div>
-								</div>
-							</li>
-							<li class="item-content">
-								<div class="item-media">
-									<i class="icon icon-edit"></i>
-								</div>
-								<div class="item-inner">
-									<div class="item-title">我的文件</div>
-								</div>
-							</li>
-							<li class="item-content">
-								<div class="item-media">
-									<i class="icon icon-edit"></i>
-								</div>
-								<div class="item-inner">
-									<div class="item-title">我的名片</div>
-								</div>
-							</li>
-						</ul>
+					<div class="col-33">
+						<a href="" class="button-link" id="night-shift-btn"><i class="icon icon-star"></i>夜间</a>
+					</div>
+					<div class="col-33">
+						<a href="" class="button-link">郑州<sup>18℃</sup></a>
 					</div>
 
 				</div>
 			</div>
+		</div>
 
-			<script src="sui/zepto.min.js"></script>
-			<script src="sui/sm.min.js"></script>
-	</body>
+		<script src="sui/zepto.min.js"></script>
+		<script src="sui/sm.min.js"></script>
+</body>
 
 </html>
 <script>
@@ -287,6 +373,31 @@
 		}
 	}
 	refreshLevel(10)
+
+
+
+
+	$("#night-shift-btn").click(function (){
+		$(document.body).toggleClass("theme-dark");
+		$("#info-panel").toggleClass("theme-dark");
+	})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		//初始化SUI,该行代码放到script最后一行
 	$.init();
 </script>
